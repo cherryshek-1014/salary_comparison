@@ -1,8 +1,4 @@
-from TaxBand import TAX_BAND
-
-GLASGOW_BANDS = [12570, 14667, 25296, 43662, 150000]
-LONDON_BANDS = [12570, 14667, 25296, 43662, 150000]
-
+from TaxBand import GLASGOW_BANDS, TAX_BAND
 
 class TaxBandChecker:
     def __init__(self, amount, band=GLASGOW_BANDS):

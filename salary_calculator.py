@@ -1,6 +1,4 @@
-import pandas as pd
-from TaxBandChecker import TaxBandChecker
-from TaxBand import TAX_BAND, TaxCalculator
+from TaxBand import TaxCalculator
 
 
 class SalaryCalculator:
@@ -11,20 +9,9 @@ class SalaryCalculator:
         self.salary_after_pension = self.salary - (self.salary * self.pension_rate)
 
     def glasgow_tax(self) -> int:
-        total = 0
-        checker = TaxBandChecker(self.salary_after_pension)
         tax_calc = TaxCalculator(self.salary_after_pension)
 
-        if checker.is_starter_rate():
-            total += tax_calc.get_tax_for_band(TAX_BAND.STARTER)
-        if checker.is_basic_rate():
-            total += tax_calc.get_tax_for_band(TAX_BAND.BASIC)
-        if checker.is_int_rate():
-            total += tax_calc.get_tax_for_band(TAX_BAND.INTERMEDIATE)
-        if checker.is_higher_rate():
-            total += tax_calc.get_tax_for_band(TAX_BAND.HIGHER)
-
-        return total
+        return tax_calc.get_total_tax()
 
     def london_tax(self):
         if self.salary_after_pension <= 12570:
