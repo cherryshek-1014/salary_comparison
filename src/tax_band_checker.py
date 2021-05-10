@@ -1,4 +1,4 @@
-from TaxBand import GLASGOW_BANDS, TAX_BAND
+from src.TaxBand import GLASGOW_BANDS, TAX_BAND
 
 class TaxBandChecker:
     def __init__(self, amount, band=GLASGOW_BANDS):

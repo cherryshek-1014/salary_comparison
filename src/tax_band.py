@@ -14,24 +14,35 @@ class TAX_BAND(Enum):
 
 
 class TaxCalculator:
-    def __init__(self, salary: int):
+    def __init__(self, salary: int, pension_rate: float):
         self.salary = salary
 
     def get_total_tax(self):
+        remainder = self.salary
         total = 0
+        
         if self.salary <= TAX_FREE:
             return 0
 
-        for index, value in enumerate(GLASGOW_BANDS):
-            if index >= len(GLASGOW_BANDS) - 1:
+        for index, band in enumerate(GLASGOW_BANDS):
+            # skip first tax free
+            if index == 0:
+                remainder -= band
+                continue
+            
+            if remainder <= 0:
                 break
-            if self.salary > GLASGOW_BANDS[index + 1]:
-                taxable_amount_in_band = (GLASGOW_BANDS[index + 1] - value)
-            else:
-                taxable_amount_in_band = (self.salary - value)
 
+            if remainder - (band - GLASGOW_BANDS[index - 1]):
+               taxable_amount_in_band = band - GLASGOW_BANDS[index - 1]
+               remainder -= taxable_amount_in_band
+            else:
+                taxable_amount_in_band = remainder
+                remainder = 0
+                
             print(taxable_amount_in_band,
                   GLASGOW_BAND_TAX_RATES[index], taxable_amount_in_band * GLASGOW_BAND_TAX_RATES[index])
             total += taxable_amount_in_band * GLASGOW_BAND_TAX_RATES[index]
 
+        print(total)
         return total

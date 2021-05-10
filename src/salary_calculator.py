@@ -1,4 +1,4 @@
-from TaxBand import TaxCalculator
+from src.TaxBand import TaxCalculator
 
 
 class SalaryCalculator:
@@ -52,10 +52,3 @@ class SalaryCalculator:
         nic = self.nic_deduction_weekly() * 52
         student_loan = self.student_loan_deduction()
         return round(self.salary_after_pension - (tax + nic + student_loan), 2)
-
-
-Salary_Calculator = SalaryCalculator(55000, 'G', 0.05)
-print('Tax Deduction: £'+str(Salary_Calculator.tax_deduction()))
-print('NI Deduction: £'+str(Salary_Calculator.nic_deduction_weekly()*52))
-print('Student Loan Deduction: £'+str(Salary_Calculator.student_loan_deduction()))
-print('Take Home: £'+str(Salary_Calculator.take_home()))

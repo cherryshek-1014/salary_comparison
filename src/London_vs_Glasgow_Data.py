@@ -1,4 +1,4 @@
-from salary_calculator import SalaryCalculator
+from src.salary_calculator import SalaryCalculator
 import pandas as pd
 
 output = pd.DataFrame(

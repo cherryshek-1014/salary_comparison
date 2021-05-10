@@ -4,8 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mplcursors
 
-from salary_calculator import SalaryCalculator
-from disposable_income import DisposableIncome
+from src.salary_calculator import SalaryCalculator
+from src.disposable_income import DisposableIncome
 
 Pension_Contribution = 0.05
 
