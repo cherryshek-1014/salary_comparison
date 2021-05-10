@@ -1,4 +1,4 @@
-from src.TaxBand import TaxCalculator
+from src.tax_band import TaxCalculator
 
 
 class SalaryCalculator:
@@ -10,7 +10,7 @@ class SalaryCalculator:
             (self.salary * self.pension_rate)
 
     def glasgow_tax(self) -> int:
-        tax_calc = TaxCalculator(self.salary_after_pension)
+        tax_calc = TaxCalculator(self.salary_after_pension, self.pension_rate)
 
         return tax_calc.get_total_tax()
 
