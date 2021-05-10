@@ -30,6 +30,8 @@ class TaxCalculator:
             else:
                 taxable_amount_in_band = (self.salary - value)
 
+            print(taxable_amount_in_band,
+                  GLASGOW_BAND_TAX_RATES[index], taxable_amount_in_band * GLASGOW_BAND_TAX_RATES[index])
             total += taxable_amount_in_band * GLASGOW_BAND_TAX_RATES[index]
 
         return total

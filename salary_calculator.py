@@ -6,7 +6,8 @@ class SalaryCalculator:
         self.salary = salary
         self.location = location
         self.pension_rate = pension_rate
-        self.salary_after_pension = self.salary - (self.salary * self.pension_rate)
+        self.salary_after_pension = self.salary - \
+            (self.salary * self.pension_rate)
 
     def glasgow_tax(self) -> int:
         tax_calc = TaxCalculator(self.salary_after_pension)
@@ -53,8 +54,8 @@ class SalaryCalculator:
         return round(self.salary_after_pension - (tax + nic + student_loan), 2)
 
 
-# Salary_Calculator = SalaryCalculator(42800,'G',0.05)
-# print('Tax Deduction: £'+str(Salary_Calculator.tax_deduction()))
-# print('NI Deduction: £'+str(Salary_Calculator.nic_deduction_weekly()*52))
-# print('Student Loan Deduction: £'+str(Salary_Calculator.student_loan_deduction()))
-# print('Take Home: £'+str(Salary_Calculator.take_home()))
+Salary_Calculator = SalaryCalculator(55000, 'G', 0.05)
+print('Tax Deduction: £'+str(Salary_Calculator.tax_deduction()))
+print('NI Deduction: £'+str(Salary_Calculator.nic_deduction_weekly()*52))
+print('Student Loan Deduction: £'+str(Salary_Calculator.student_loan_deduction()))
+print('Take Home: £'+str(Salary_Calculator.take_home()))

@@ -2,6 +2,7 @@ import numpy as np
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+import mplcursors
 
 from salary_calculator import SalaryCalculator
 from disposable_income import DisposableIncome
@@ -17,6 +18,7 @@ salary_matrix = pd.DataFrame({"person_1": person_1, "person_2": person_2})
 
 glasgow_save = []
 london_save = []
+person_1_takehome = {}
 
 for index, row in salary_matrix.iterrows():
     person_1_takehome_g = SalaryCalculator(
@@ -41,7 +43,7 @@ for index, row in salary_matrix.iterrows():
     glasgow_save.append(glasgow.disposable_income(monthly_takehome_g))
     london_save.append(london.disposable_income(monthly_takehome_l))
 
-london_save = [None if i < min(glasgow_save) else i for i in london_save]
+#london_save = [None if i < min(glasgow_save) else i for i in london_save]
 
 salary_matrix["save_invest_glasgow"] = glasgow_save
 salary_matrix["save_invest_london"] = london_save
@@ -56,7 +58,7 @@ sns_data_london = result = salary_matrix.pivot(
 # min returns None
 plot_min = min(filter(lambda x: x is not None, glasgow_save + london_save))
 plot_max = max(filter(lambda x: x is not None, glasgow_save + london_save))
-mask = np.triu(np.ones_like(sns_data_glasgow, dtype=np.bool), k=1)
+#mask = np.triu(np.ones_like(sns_data_glasgow, dtype=np.bool), k=1)
 fig, ax = plt.subplots(1, 2)
 sns.heatmap(
     sns_data_glasgow,
@@ -65,8 +67,8 @@ sns.heatmap(
     cmap="YlGnBu",
     ax=ax[0],
     vmax=plot_max,
-    vmin=plot_min,
-    mask=mask,
+    vmin=plot_min
+    # mask=mask,
 )
 sns.heatmap(
     sns_data_london,
@@ -75,8 +77,8 @@ sns.heatmap(
     cmap="YlGnBu",
     ax=ax[1],
     vmax=plot_max,
-    vmin=plot_min,
-    mask=mask,
+    vmin=plot_min
+    # mask=mask,
 )
 
 ax[0].invert_yaxis()
@@ -86,6 +88,7 @@ ax[0].set_title("saves + invest - Glasgow")
 ax[1].set_title("saves + invest - London")
 
 plt.tight_layout()
-plt.savefig("compare_save_invest.png", dpi=400)
+#plt.savefig("compare_save_invest.png", dpi=400)
 
+mplcursors.cursor(hover=True)
 plt.show()
